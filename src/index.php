@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 
 <head>
+    <meta charset="utf-8" lang="fr">
     <title>Test title page</title>
 </head>
 
 <body>
-    <h1>Test docker</h1>
+    
 </body>
