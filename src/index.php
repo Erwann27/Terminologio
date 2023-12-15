@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <nav class="navbar bg-dark-subtle">
+        <nav class="navbar bg-dark-subtle mb-5">
             <div class="container-fluid">
                 <span class="navbar-brand">Bienvenue</span>
                 <?php
@@ -31,14 +31,30 @@
                 ?>
             </div>
         </nav>
-
-        <div class="input-group">
-            <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
-            <select class="form-select" id="category-selection">
-                <option selected>Test1</option>
-                <option value="1">Test2</option>
-                <option value="2">Test3</option>
-            </select>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
+                        <select class="form-select" id="category-selection">
+                            <option selected>Test1</option>
+                            <option value="1">Test2</option>
+                            <option value="2">Test3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group col-auto d-none">
+                        <label for="project-selection" class="input-group-text">Sélection du projet</label>
+                        <select class="form-select" id="project-selection">
+                            <option selected>Test1</option>
+                            <option value="1">Test2</option>
+                            <option value="2">Test3</option>
+                        </select>
+                    </div>
+                </div>
+            <div>
         </div>
     </body>
 </html>
