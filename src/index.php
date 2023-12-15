@@ -13,8 +13,10 @@
                 var value =document.getElementById("category-selection").value;
                 if(value != 0){
                     document.getElementById("project-selection-container").classList.remove("d-none");
+                    document.getElementById("create-project-container").classList.remove("d-none");
                 } else {
                     document.getElementById("project-selection-container").classList.add("d-none");
+                    document.getElementById("create-project-container").classList.add("d-none");
                 }
             }
         </script>
@@ -62,6 +64,11 @@
                             <option value="1">Projet 2</option>
                             <option value="2">Projet 3</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-none" id="create-project-container">
+                        <input type="button" value="Créer un nouveau projet" class="form-control">
                     </div>
                 </div>
             <div>
