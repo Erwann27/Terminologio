@@ -8,6 +8,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script>
+            function updateProjectSelection(){
+                var value =document.getElementById("category-selection").value;
+                if(value != 0){
+                    document.getElementById("project-selection-container").classList.remove("d-none");
+                } else {
+                    document.getElementById("project-selection-container").classList.add("d-none");
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -37,20 +47,20 @@
                 <div class="col">
                     <div class="input-group">
                         <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
-                        <select class="form-select" id="category-selection">
-                            <option selected>Test1</option>
-                            <option value="1">Test2</option>
-                            <option value="2">Test3</option>
+                        <select class="form-select" id="category-selection" onchange="updateProjectSelection();">
+                            <option value="0" selected></option>
+                            <option value="1">Catégorie 1</option>
+                            <option value="2">Catégorie 2</option>
                         </select>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="input-group col-auto d-none">
+                    <div class="input-group col-auto d-none" id="project-selection-container">
                         <label for="project-selection" class="input-group-text">Sélection du projet</label>
                         <select class="form-select" id="project-selection">
-                            <option selected>Test1</option>
-                            <option value="1">Test2</option>
-                            <option value="2">Test3</option>
+                            <option selected>Projet 1</option>
+                            <option value="1">Projet 2</option>
+                            <option value="2">Projet 3</option>
                         </select>
                     </div>
                 </div>
