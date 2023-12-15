@@ -51,8 +51,8 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
                 <div class="input-group">
                     <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
                     <select class="form-select" id="category-selection" onchange="updateProjectSelection();">
@@ -62,7 +62,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="project-selection-container">
                     <label for="project-selection" class="input-group-text">Sélection du projet</label>
                     <select class="form-select" id="project-selection">
@@ -72,7 +72,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-auto">
                 <div class="d-none" id="create-project-container">
                     <input type="button" value="Créer un nouveau projet" class="form-control">
                 </div>
