@@ -31,5 +31,14 @@
                 ?>
             </div>
         </nav>
+
+        <div class="input-group">
+            <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
+            <select class="form-select" id="category-selection">
+                <option selected>Test1</option>
+                <option value="1">Test2</option>
+                <option value="2">Test3</option>
+            </select>
+        </div>
     </body>
 </html>
