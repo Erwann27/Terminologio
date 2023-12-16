@@ -1,6 +1,6 @@
 <?php
-
-class User {
+require_once("Model.php");
+class User extends Model {
 
     private String $username;
     private String $password;
@@ -8,6 +8,8 @@ class User {
     public function __construct(String $username, String $password) {
         $this->username = $username;
         $this->password = $password;
+        $this->table = "User";
+        $this->getConnection();
     }
 
     public function getUsername():String {
@@ -24,5 +26,18 @@ class User {
 
     public function setPassword(String $password):void {
         $this->password = $password;
+    }
+
+    public function getByUsername(String $username):Array { 
+        $sql = "SELECT * FROM ".$this->table." WHERE `username`= ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$username]);
+        return $query->fetchAll();
+    }
+
+    public function insertUser(String $username, String $password):void { 
+        $sql = "INSERT INTO $this->table VALUES (?, ?, false)";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$username, $password]);
     }
 }
