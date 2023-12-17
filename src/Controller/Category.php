@@ -6,7 +6,9 @@ function printCategories() : String {
     $list = $category->getAllCategories();
     $result = "<option value='0' selected>Choisir une catégorie</option>";
     for ($i = 0; $i < count($list); $i++) {
-        $result .= "<option value = '$i + 1'>" . $list[$i]["name"] . "</option>";
+        $value = $i + 1;
+        $name = $list[$i]["name"];
+        $result .= "<option value = '$value'>" . $name . "</option>";
     }
     return $result;
 }

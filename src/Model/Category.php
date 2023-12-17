@@ -7,12 +7,16 @@ class Category extends Model {
 
     public function __construct(String $name) {
         $this->name = $name;
-        $this->table = "User";
+        $this->table = "Category";
         $this->getConnection();
     }
 
+    public function getName() : String {
+        return $this->name;
+    }
+
     public function getAllCategories() : array {
-        $sql = "SELECT name FROM Category ORDER BY name";
+        $sql = "SELECT name FROM $this->table ORDER BY name";
         $query = $this->connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll();
