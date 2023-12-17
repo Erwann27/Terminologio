@@ -1,4 +1,7 @@
-<?php  session_start(); ?>
+<?php  session_start();
+require_once("Controller/Category.php");
+
+?>
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -64,9 +67,10 @@
                 <div class="input-group">
                     <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
                     <select class="form-select" id="category-selection" onchange="updateProjectSelection();">
-                        <option value="0" selected>Choisir une catégorie</option>
+                        <!-- <option value="0" selected>Choisir une catégorie</option>
                         <option value="1">Catégorie 1</option>
-                        <option value="2">Catégorie 2</option>
+                        <option value="2">Catégorie 2</option> -->
+                        <?php echo printCategories(); ?>
                     </select>
                 </div>
             </div>
