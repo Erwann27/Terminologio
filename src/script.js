@@ -7,7 +7,7 @@ function update() {
     xhr.onreadystatechange = updateData;
     var category = document.getElementById("category-selection");
     var value = category.options[category.selectedIndex].text;
-    var url = "Controller/Projects.php?category=" + value;
+    var url = "Controller/projects.php?category=" + value;
     xhr.open("GET", url, true);
     xhr.send(null);
 }

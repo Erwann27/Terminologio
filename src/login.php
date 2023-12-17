@@ -14,7 +14,7 @@
         crossorigin="anonymous"></script>
 </head>
 <body>
-    <form method="POST" action="Controller/Login.php">
+    <form method="POST" action="Controller/login.php">
         <div class="form-group mb-3">
             <label for="username">Nom d'utilisateur : </label>
             <input type="text" class="form-control" name="username" id="username" placeholder="Nom d'utilisateur..." required>

@@ -1,5 +1,5 @@
 <?php  session_start();
-require_once("Controller/Category.php");
+require_once("Controller/category.php");
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ require_once("Controller/Category.php");
                 echo $_SESSION["username"];
                 ?>
                 </span>
-                <a class="icon-link" href="Controller/Deconnect.php">
+                <a class="icon-link" href="Controller/disconnect.php">
                     <i class="bi-power" style="font-size: 3ex; color: black;"></i>
                 </a>
                 <?php
