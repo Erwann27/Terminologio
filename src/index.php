@@ -18,6 +18,9 @@ require_once("Controller/Category.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <script src="ajax.js"></script>
+    <script src="script.js"></script>
+
     <script>
         function updateProjectSelection() {
             var value = document.getElementById("category-selection").value;
@@ -28,6 +31,7 @@ require_once("Controller/Category.php");
                 document.getElementById("project-selection-container").classList.add("d-none");
                 document.getElementById("create-project-container").classList.add("d-none");
             }
+            update();
         }
     </script>
 </head>
@@ -67,9 +71,6 @@ require_once("Controller/Category.php");
                 <div class="input-group">
                     <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
                     <select class="form-select" id="category-selection" onchange="updateProjectSelection();">
-                        <!-- <option value="0" selected>Choisir une catégorie</option>
-                        <option value="1">Catégorie 1</option>
-                        <option value="2">Catégorie 2</option> -->
                         <?php echo printCategories(); ?>
                     </select>
                 </div>
@@ -78,9 +79,6 @@ require_once("Controller/Category.php");
                 <div class="input-group col-auto d-none" id="project-selection-container">
                     <label for="project-selection" class="input-group-text">Sélection du projet</label>
                     <select class="form-select" id="project-selection">
-                        <option selected>Projet 1</option>
-                        <option value="1">Projet 2</option>
-                        <option value="2">Projet 3</option>
                     </select>
                 </div>
             </div>
