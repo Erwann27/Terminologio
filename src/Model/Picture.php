@@ -45,4 +45,11 @@ class Picture extends Model {
         $query->execute([$category]);
         return $query->fetchAll();
     }
+
+    public function getProjectsFromTitleAndCategory(String $title, String $category): array {
+        $sql = "SELECT * FROM $this->table WHERE title = ? AND category = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$title, $category]);
+        return $query->fetchAll();
+    }
 }

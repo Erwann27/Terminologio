@@ -20,6 +20,7 @@ require_once("Controller/category.php");
         crossorigin="anonymous"></script>
     <script src="ajax.js"></script>
     <script src="script.js"></script>
+    <script src="print.js"></script>
 
     <script>
         function updateProjectSelection() {
@@ -78,7 +79,7 @@ require_once("Controller/category.php");
             <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="project-selection-container">
                     <label for="project-selection" class="input-group-text">Sélection du projet</label>
-                    <select class="form-select" id="project-selection">
+                    <select class="form-select" id="project-selection" onloadstart="printProject();" onchange="printProject();">
                     </select>
                 </div>
             </div>
@@ -90,6 +91,9 @@ require_once("Controller/category.php");
 
         </div>
     </div>
+    <br>
+    <br>
+    <div id = "show-img" class="text-center"></div>
 </body>
 
 </html>
