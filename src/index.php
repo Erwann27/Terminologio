@@ -69,6 +69,13 @@ require_once("Controller/language.php");
                 </div>
             </div>
             <div class="col-md-auto">
+                <div class="input-group col-auto d-none" id="language-selection-container">
+                    <label for="language-selection" class="input-group-text">Sélection de langue</label>
+                    <select class="form-select" id="language-selection">
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-auto">
                 <div class="d-none" id="create-project-container">
                     <input type="button" value="Créer un nouveau projet" class="form-control"
                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
@@ -86,31 +93,24 @@ require_once("Controller/language.php");
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="select-language">Langue par défaut : </label>
-                                    <select name="select-language" id="select-language">
+                                    <select name="select-language" id="select-language" class="form-select">
                                     <?php echo printLanguages(); ?>
                                     </select>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="category-selection">Catégorie : </label>
-                                    <select name="category-selection" id="select-category">
+                                    <select name="category-selection" id="select-category" class="form-select">
                                     <?php echo printCategories(false); ?>
                                     </select>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="pic">Choisissez une image:</label>
-                                    <input type="file" id="pic" name="pic" accept="image/png, image/jpeg">
+                                    <label for="pic" class="form-label">Choisissez une image:</label>
+                                    <input class="form-control" type="file" id="pic" name="pic" accept="image/png, image/jpeg">
                                 </div>
                                 <button class="btn btn-primary" type="submit">Importer</button>
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-auto">
-                <div class="input-group col-auto d-none" id="language-selection-container">
-                    <label for="language-selection" class="input-group-text">Sélection de langue</label>
-                    <select class="form-select" id="language-selection">
-                    </select>
                 </div>
             </div>
         </div>
