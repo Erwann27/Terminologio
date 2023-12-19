@@ -10,6 +10,7 @@ $list = $pic -> getProjectsFromTitleAndCategory($pic -> getTitle(), $category ->
 $result = "";
 if (count($list) != 0) {
     $img = $list[0]["title"];
-    $result = "<img src='res/$img' alt='$img' class='img-fluid rounded'>";
+    $path = "../res/" . $category->getName() . "/" . $img;
+    $result = "<img src='$path' alt='$img' class='img-fluid rounded'>";
 }
 echo $result;

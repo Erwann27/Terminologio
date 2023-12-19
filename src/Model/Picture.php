@@ -52,4 +52,18 @@ class Picture extends Model {
         $query->execute([$title, $category]);
         return $query->fetchAll();
     }
+
+    public function insertPic(String $title, String $language, String $category) {
+        $sql = "INSERT INTO $this->table VALUES(?, ?, ?)";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$title, $language, $category]);
+        return $query->fetchAll();
+    }
+
+    public function getLanguagesFromTitleAndCategory (String $title, String $category): array {
+        $sql = "SELECT default_language FROM $this->table WHERE title = ? AND category = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$title, $category]);
+        return $query->fetchAll();
+    }
 }

@@ -1,6 +1,6 @@
 <?php  session_start();
 require_once("Controller/category.php");
-
+require_once("Controller/language.php");
 ?>
 <!DOCTYPE html>
 
@@ -21,6 +21,7 @@ require_once("Controller/category.php");
     <script src="ajax.js"></script>
     <script src="script.js"></script>
     <script src="print.js"></script>
+    <script src="printLanguagesFromProject.js"></script>
 
     <script>
         function updateProjectSelection() {
@@ -33,6 +34,17 @@ require_once("Controller/category.php");
                 document.getElementById("create-project-container").classList.add("d-none");
             }
             update();
+        }
+
+        function updateLanguageSelection() {
+            var value = document.getElementById("project-selection").value;
+            if (value != 0) {
+                document.getElementById("language-selection-container").classList.remove("d-none");
+            } else {
+                document.getElementById("language-selection-container").classList.add("d-none");
+            }
+            printLanguagesFromProject();
+            printProject(); 
         }
     </script>
 </head>
@@ -72,23 +84,62 @@ require_once("Controller/category.php");
                 <div class="input-group">
                     <label for="category-selection" class="input-group-text">Sélection de la catégorie</label>
                     <select class="form-select" id="category-selection" onchange="updateProjectSelection();">
-                        <?php echo printCategories(); ?>
+                        <?php echo printCategories(true); ?>
                     </select>
                 </div>
             </div>
             <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="project-selection-container">
                     <label for="project-selection" class="input-group-text">Sélection du projet</label>
-                    <select class="form-select" id="project-selection" onloadstart="printProject();" onchange="printProject();">
+                    <select class="form-select" id="project-selection" onchange="updateLanguageSelection();">
                     </select>
                 </div>
             </div>
             <div class="col-md-auto">
                 <div class="d-none" id="create-project-container">
-                    <input type="button" value="Créer un nouveau projet" class="form-control">
+                    <input type="button" value="Créer un nouveau projet" class="form-control"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" 
+                    tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Importation d'une image</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <form method="POST" action="Controller/upload.php" enctype="multipart/form-data">
+                                <div class="form-group mb-3">
+                                    <label for="title">Titre de l'image : </label>
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Titre" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="select-language">Langue par défaut : </label>
+                                    <select name="select-language" id="select-language">
+                                    <?php echo printLanguages(); ?>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="category-selection">Catégorie : </label>
+                                    <select name="category-selection" id="select-category">
+                                    <?php echo printCategories(false); ?>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="pic">Choisissez une image:</label>
+                                    <input type="file" id="pic" name="pic" accept="image/png, image/jpeg">
+                                </div>
+                                <button class="btn btn-primary" type="submit">Importer</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <div class="col-md-auto">
+                <div class="input-group col-auto d-none" id="language-selection-container">
+                    <label for="language-selection" class="input-group-text">Sélection de langue</label>
+                    <select class="form-select" id="language-selection">
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
     <br>
