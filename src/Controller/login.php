@@ -13,7 +13,11 @@ if (isset($_POST["username"]) && isset($_POST["pwd"])) {
             session_start();
             session_regenerate_id();
             $_SESSION["username"] = $user->getUsername();
-            header("Location:../index.php");
+            if($result[0]["is_admin"] == 1){
+                header("Location:../connection_type.php");
+            } else {
+                header("Location:../index.php");
+            }
         } else {
           header("Location:../login.php");    
         }
