@@ -1,6 +1,6 @@
 <nav class="navbar bg-dark-subtle mb-5">
     <div class="container-fluid">
-        <span class="navbar-brand">Bienvenue</span>
+        <a class="navbar-brand" href="index.php">Bienvenue</a>
         <?php
         if (isset($_SESSION["username"])) {
             echo $_SESSION["username"];
@@ -13,10 +13,6 @@
             ?>
             <a href="login.php">
                 Se connecter
-            </a>
-
-            <a href="register.php">
-                S'inscrire
             </a>
             <?php
         }
