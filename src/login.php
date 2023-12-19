@@ -1,5 +1,6 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <title>Se connecter</title>
     <meta charset="UTF-8">
@@ -13,18 +14,33 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 </head>
+
 <body>
     <?php include_once("navbar.php") ?>
-    <form method="POST" action="Controller/Login.php">
-        <div class="form-group mb-3">
-            <label for="username">Nom d'utilisateur : </label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Nom d'utilisateur..." required>
+    <div class="container w-50">
+        <form class="border p-2" method="POST" action="Controller/Login.php">
+            <div class="form-group mb-3 row">
+                <label for="username" class="col-sm-3 col-form-label">Nom d'utilisateur : </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="username" id="username"
+                        placeholder="Nom d'utilisateur" required>
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="password" class="col-sm-3 col-form-label">Mot de passe : </label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" name="pwd" id="password" placeholder="Mot de passe"
+                        required>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit">Se connecter</button>
+            </div>
+        </form>
+        <div class="d-flex justify-content-center">
+            <span>Vous ne possédez pas de compte? <a href="register.php">Inscrivez vous ici</a>.</span>
         </div>
-        <div class="form-group mb-3">
-            <label for="password">Mot de passe : </label>
-            <input type="password" class="form-control" name="pwd" id="password" placeholder="Mot de passe" required> 
-        </div>
-        <button class="btn btn-primary" type="submit">Se connecter</button>
-    </form>
+    </div>
 </body>
+
 </html>
