@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : mar. 19 déc. 2023 à 17:01
+-- Généré le : mar. 19 déc. 2023 à 19:44
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -83,7 +83,7 @@ INSERT INTO `Language` (`name`, `code`) VALUES
 
 CREATE TABLE `Picture` (
   `title` varchar(255) NOT NULL,
-  `default_language` varchar(255) NOT NULL,
+  `default_language` varchar(2) NOT NULL,
   `category` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -92,6 +92,9 @@ CREATE TABLE `Picture` (
 --
 
 INSERT INTO `Picture` (`title`, `default_language`, `category`) VALUES
+('b', 'it', 'Littérature'),
+('h', 'de', 'Sciences'),
+('Je teste un truc', 'en', 'Sciences'),
 ('test', 'fr', 'Sciences'),
 ('test2', 'fr', 'Sciences'),
 ('test3', 'fr', 'Littérature');
@@ -162,7 +165,7 @@ ALTER TABLE `Language`
 -- Index pour la table `Picture`
 --
 ALTER TABLE `Picture`
-  ADD PRIMARY KEY (`title`,`default_language`,`category`),
+  ADD PRIMARY KEY (`title`,`category`,`default_language`) USING BTREE,
   ADD KEY `category` (`category`),
   ADD KEY `Picture_ibfk_2` (`default_language`);
 
