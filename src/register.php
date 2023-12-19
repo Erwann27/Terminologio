@@ -14,6 +14,7 @@
         crossorigin="anonymous"></script>
 </head>
 <body>
+    <?php include_once("navbar.php") ?>
     <form method="POST" action="Controller/Register.php">
         <div class="form-group mb-3">
             <label for="username">Nom d'utilisateur : </label>
