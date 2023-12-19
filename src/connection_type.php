@@ -20,8 +20,8 @@
 
     <div class="container w-50">
         <form class="border p-2" method="POST" action="Controller/connection_type.php">
-            <div class="input-group mb-3">
-                <label for="connection-selection" class="input-group-text">Choisissez votre profil de connexion</label>
+            <div class="form-group mb-3">
+                <label for="connection-selection" class="col-form-label">Choisissez votre profil de connexion :</label>
                 <select name="connection_selection" class="form-select" id="connection-selection">
                     <option selected value="0">Terminologieur</option>
                     <option value="1">Administrateur</option>
