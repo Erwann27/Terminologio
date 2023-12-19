@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : lun. 18 déc. 2023 à 09:56
+-- Généré le : mar. 19 déc. 2023 à 17:01
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -29,8 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Caption` (
   `title` varchar(255) NOT NULL,
-  `language` varchar(255) NOT NULL,
-  `text` text DEFAULT NULL COMMENT 'Content of the post',
   `start_point_X` int(11) DEFAULT NULL,
   `start_point_Y` int(11) DEFAULT NULL,
   `end_point_X` int(11) DEFAULT NULL,
@@ -58,6 +56,28 @@ INSERT INTO `Category` (`name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Language`
+--
+
+CREATE TABLE `Language` (
+  `name` varchar(32) NOT NULL,
+  `code` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Language`
+--
+
+INSERT INTO `Language` (`name`, `code`) VALUES
+('Deutsch', 'de'),
+('English', 'en'),
+('Español', 'es'),
+('Français', 'fr'),
+('Italiano', 'it');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Picture`
 --
 
@@ -75,6 +95,18 @@ INSERT INTO `Picture` (`title`, `default_language`, `category`) VALUES
 ('test', 'fr', 'Sciences'),
 ('test2', 'fr', 'Sciences'),
 ('test3', 'fr', 'Littérature');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Translation`
+--
+
+CREATE TABLE `Translation` (
+  `caption` varchar(255) NOT NULL,
+  `language` varchar(2) NOT NULL,
+  `text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -111,7 +143,7 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 -- Index pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  ADD PRIMARY KEY (`title`,`language`),
+  ADD PRIMARY KEY (`title`) USING BTREE,
   ADD KEY `title` (`title`);
 
 --
@@ -121,11 +153,25 @@ ALTER TABLE `Category`
   ADD PRIMARY KEY (`name`);
 
 --
+-- Index pour la table `Language`
+--
+ALTER TABLE `Language`
+  ADD PRIMARY KEY (`code`);
+
+--
 -- Index pour la table `Picture`
 --
 ALTER TABLE `Picture`
   ADD PRIMARY KEY (`title`,`default_language`,`category`),
-  ADD KEY `category` (`category`);
+  ADD KEY `category` (`category`),
+  ADD KEY `Picture_ibfk_2` (`default_language`);
+
+--
+-- Index pour la table `Translation`
+--
+ALTER TABLE `Translation`
+  ADD PRIMARY KEY (`caption`,`language`),
+  ADD KEY `fk_language` (`language`);
 
 --
 -- Index pour la table `User`
@@ -147,7 +193,15 @@ ALTER TABLE `Caption`
 -- Contraintes pour la table `Picture`
 --
 ALTER TABLE `Picture`
-  ADD CONSTRAINT `Picture_ibfk_1` FOREIGN KEY (`category`) REFERENCES `Category` (`name`);
+  ADD CONSTRAINT `Picture_ibfk_1` FOREIGN KEY (`category`) REFERENCES `Category` (`name`),
+  ADD CONSTRAINT `Picture_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `Language` (`code`);
+
+--
+-- Contraintes pour la table `Translation`
+--
+ALTER TABLE `Translation`
+  ADD CONSTRAINT `fk_caption` FOREIGN KEY (`caption`) REFERENCES `Caption` (`title`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_language` FOREIGN KEY (`language`) REFERENCES `Language` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
