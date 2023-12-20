@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : mer. 20 déc. 2023 à 09:28
+-- Généré le : mer. 20 déc. 2023 à 18:59
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -30,11 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `Caption` (
   `pic_id` int(11) NOT NULL,
   `caption_id` int(11) NOT NULL,
-  `start_point_X` int(11) DEFAULT NULL,
-  `start_point_Y` int(11) DEFAULT NULL,
-  `end_point_X` int(11) DEFAULT NULL,
-  `end_point_Y` int(11) DEFAULT NULL
+  `point_X` int(11) DEFAULT NULL,
+  `point_Y` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Caption`
+--
+
+INSERT INTO `Caption` (`pic_id`, `caption_id`, `point_X`, `point_Y`) VALUES
+(1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -98,10 +103,10 @@ INSERT INTO `Picture` (`id`, `title`, `default_language`, `category`) VALUES
 (2, 'g', 'es', 'Sciences'),
 (3, 'h', 'de', 'Sciences'),
 (4, 'Je teste un truc', 'en', 'Sciences'),
+(8, 'raaz', 'de', 'Littérature'),
 (5, 'test', 'fr', 'Sciences'),
 (6, 'test2', 'fr', 'Sciences'),
-(7, 'test3', 'fr', 'Littérature'),
-(8, 'raaz', 'de', 'Littérature');
+(7, 'test3', 'fr', 'Littérature');
 
 -- --------------------------------------------------------
 
@@ -134,9 +139,11 @@ CREATE TABLE `User` (
 INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 ('a', 'b', 0),
 ('b', '3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d', 0),
+('eayveayygue', '$2y$10$Xnn6cOFwa1suI6XZICa5lef2n6aPpkeV7/BsgTuMJ6mYHb6CM0fjq', 0),
 ('F', 'f67ab10ad4e4c53121b6a5fe4da9c10ddee905b978d3788d2723d7bfacbe28a9', 0),
 ('G', '333e0a1e27815d0ceee55c473fe3dc93d56c63e3bee2b3b4aee8eed6d70191a3', 0),
 ('guzagugu', 'cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29', 0),
+('mp', '$2y$10$tr6WdlTKpz3tEXrH3WAHC.C6OmlhajtfsJrzfR07AgMIPdWhXRaBy', 0),
 ('p', '$2y$10$4iETKMWEOVLxVgNScarijObOn.MwFc5U306DtqpaR5TK1fXlxmd2u', 0),
 ('t', 'e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8', 0),
 ('test', '$2y$10$6IGk1zvqZGkuQ3Eu8UGOpOQMVoZVb5vf/FoOd3IhyUzj7Xa2GIWky', 1),
@@ -169,7 +176,7 @@ ALTER TABLE `Language`
 -- Index pour la table `Picture`
 --
 ALTER TABLE `Picture`
-  ADD PRIMARY KEY (`title`,`category`,`default_language`) USING BTREE,
+  ADD PRIMARY KEY (`title`,`category`) USING BTREE,
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `category` (`category`),
   ADD KEY `Picture_ibfk_2` (`default_language`);
@@ -195,7 +202,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  MODIFY `caption_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `caption_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `Picture`

@@ -1,33 +1,28 @@
 <?php
 
-class Caption {
+require_once("Model.php");
+
+class Caption extends Model {
+
+    private int $pic_id;
 
     private String $title;
-    private String $language;
     private String $text;
-    private int $start_point_X;
-    private int $start_point_Y;
-    private int $end_point_X;
-    private int $end_point_Y;
+    private int $point_X;
+    private int $point_Y;
 
-    public function __construct(String $title, String $language, 
-        String $text, int $start_point_X, int $start_point_Y, 
-        int $end_point_X, int $end_point_Y) {
-            $this->title = $title;
-            $this->language = $language;
-            $this->text = $text;
-            $this->start_point_X = $start_point_X;
-            $this->start_point_Y = $start_point_Y;
-            $this->end_point_X = $end_point_X;
-            $this->end_point_Y = $end_point_Y;
+    public function __construct(int $pic_id) {
+        $this->pic_id = $pic_id;
+        $this->table = "Caption";
+        $this->getConnection();
     }
 
     public function getTitle(): String {
         return $this->title;
     }
 
-    public function getLanguage(): String {
-        return $this->language;
+    public function getPicId(): String {
+        return $this->pic_id;
     }
 
     public function getText(): String {
@@ -35,20 +30,13 @@ class Caption {
     }
 
     public function getStartPointX(): int {
-        return $this->start_point_X;
+        return $this->point_X;
     }
 
     public function getStartPointY(): int {
-        return $this->start_point_Y;
+        return $this->point_Y;
     }
 
-    public function getEndPointX(): int {
-        return $this->end_point_X;
-    }
-
-    public function getEndPointY(): int {
-        return $this->end_point_Y;
-    }
 
     public function setTitle(String $title): void {
         $this->title = $title;
@@ -63,18 +51,17 @@ class Caption {
     }
 
     public function setStartPointX(int $start_point_X): void {
-        $this->start_point_X = $start_point_X;
+        $this->pointX = $start_point_X;
     }
 
     public function setStartPointY(int $start_point_Y): void {
-        $this->start_point_Y = $start_point_Y;
+        $this->pointY = $start_point_Y;
     }
 
-    public function setEndPointX(int $end_point_X): void {
-        $this->end_point_X = $end_point_X;
-    }
-
-    public function setEndPointY(int $end_point_Y): void {
-        $this->end_point_Y = $end_point_Y;
+    public function getNextCaptionIdFromPic (int $pic_id): array {
+        $sql = "SELECT caption_id FROM $this->table WHERE pic_id = ? ORDER BY caption_id DESC LIMIT 1";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id]);
+        return $query->fetchAll();
     }
 }

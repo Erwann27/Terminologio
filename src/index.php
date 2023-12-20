@@ -12,6 +12,7 @@ require_once("Controller/language.php");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -22,6 +23,7 @@ require_once("Controller/language.php");
     <script src="js/script.js"></script>
     <script src="js/print.js"></script>
     <script src="js/printLanguagesFromProject.js"></script>
+    <script src="js/caption.js"></script>
 
     <script>
         function updateProjectSelection() {
@@ -41,8 +43,10 @@ require_once("Controller/language.php");
             var value = document.getElementById("project-selection").value;
             if (value != 0) {
                 document.getElementById("language-selection-container").classList.remove("d-none");
+
             } else {
                 document.getElementById("language-selection-container").classList.add("d-none");
+
             }
             printLanguagesFromProject();
             printProject(); 
@@ -118,7 +122,14 @@ require_once("Controller/language.php");
     </div>
     <br>
     <br>
-    <div id = "show-img" class="text-center"></div>
+
+    <div id = "show-img" class="text-center"></div> 
+    <script>
+        let divImg = document.getElementById("show-img");
+        divImg.onclick = function(e) {
+            addCaption(e);  
+        }
+    </script>
 </body>
 
 </html>
