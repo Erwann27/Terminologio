@@ -54,7 +54,7 @@ class Picture extends Model {
     }
 
     public function insertPic(String $title, String $language, String $category) {
-        $sql = "INSERT INTO $this->table VALUES(?, ?, ?)";
+        $sql = "INSERT INTO $this->table (title, default_language, category) VALUES(?, ?, ?)";
         $query = $this->connexion->prepare($sql);
         $query->execute([$title, $language, $category]);
         return $query->fetchAll();

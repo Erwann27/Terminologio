@@ -18,10 +18,10 @@ require_once("Controller/language.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
-    <script src="ajax.js"></script>
-    <script src="script.js"></script>
-    <script src="print.js"></script>
-    <script src="printLanguagesFromProject.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/print.js"></script>
+    <script src="js/printLanguagesFromProject.js"></script>
 
     <script>
         function updateProjectSelection() {
@@ -32,6 +32,7 @@ require_once("Controller/language.php");
             } else {
                 document.getElementById("project-selection-container").classList.add("d-none");
                 document.getElementById("create-project-container").classList.add("d-none");
+                document.getElementById("language-selection-container").classList.add("d-none");
             }
             update();
         }

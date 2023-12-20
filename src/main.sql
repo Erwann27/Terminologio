@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : mar. 19 déc. 2023 à 19:44
+-- Généré le : mer. 20 déc. 2023 à 09:28
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Caption` (
-  `title` varchar(255) NOT NULL,
+  `pic_id` int(11) NOT NULL,
+  `caption_id` int(11) NOT NULL,
   `start_point_X` int(11) DEFAULT NULL,
   `start_point_Y` int(11) DEFAULT NULL,
   `end_point_X` int(11) DEFAULT NULL,
@@ -82,6 +83,7 @@ INSERT INTO `Language` (`name`, `code`) VALUES
 --
 
 CREATE TABLE `Picture` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `default_language` varchar(2) NOT NULL,
   `category` varchar(16) NOT NULL
@@ -91,13 +93,15 @@ CREATE TABLE `Picture` (
 -- Déchargement des données de la table `Picture`
 --
 
-INSERT INTO `Picture` (`title`, `default_language`, `category`) VALUES
-('b', 'it', 'Littérature'),
-('h', 'de', 'Sciences'),
-('Je teste un truc', 'en', 'Sciences'),
-('test', 'fr', 'Sciences'),
-('test2', 'fr', 'Sciences'),
-('test3', 'fr', 'Littérature');
+INSERT INTO `Picture` (`id`, `title`, `default_language`, `category`) VALUES
+(1, 'b', 'it', 'Littérature'),
+(2, 'g', 'es', 'Sciences'),
+(3, 'h', 'de', 'Sciences'),
+(4, 'Je teste un truc', 'en', 'Sciences'),
+(5, 'test', 'fr', 'Sciences'),
+(6, 'test2', 'fr', 'Sciences'),
+(7, 'test3', 'fr', 'Littérature'),
+(8, 'raaz', 'de', 'Littérature');
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,7 @@ INSERT INTO `Picture` (`title`, `default_language`, `category`) VALUES
 --
 
 CREATE TABLE `Translation` (
-  `caption` varchar(255) NOT NULL,
+  `caption_id` int(11) NOT NULL,
   `language` varchar(2) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -135,7 +139,7 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 ('guzagugu', 'cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29', 0),
 ('p', '$2y$10$4iETKMWEOVLxVgNScarijObOn.MwFc5U306DtqpaR5TK1fXlxmd2u', 0),
 ('t', 'e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8', 0),
-('test', 'a', 1),
+('test', '$2y$10$6IGk1zvqZGkuQ3Eu8UGOpOQMVoZVb5vf/FoOd3IhyUzj7Xa2GIWky', 1),
 ('zounkla', '$2y$10$DpYzt.X1UNcPbp3ILD6m1OZlCLvigKV.7mIGOODMTp7hpl9brGQfi', 0);
 
 --
@@ -146,8 +150,8 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 -- Index pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  ADD PRIMARY KEY (`title`) USING BTREE,
-  ADD KEY `title` (`title`);
+  ADD PRIMARY KEY (`pic_id`),
+  ADD UNIQUE KEY `caption_id` (`caption_id`);
 
 --
 -- Index pour la table `Category`
@@ -166,6 +170,7 @@ ALTER TABLE `Language`
 --
 ALTER TABLE `Picture`
   ADD PRIMARY KEY (`title`,`category`,`default_language`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`),
   ADD KEY `category` (`category`),
   ADD KEY `Picture_ibfk_2` (`default_language`);
 
@@ -173,14 +178,30 @@ ALTER TABLE `Picture`
 -- Index pour la table `Translation`
 --
 ALTER TABLE `Translation`
-  ADD PRIMARY KEY (`caption`,`language`),
-  ADD KEY `fk_language` (`language`);
+  ADD KEY `fk_language` (`language`),
+  ADD KEY `fk_caption` (`caption_id`);
 
 --
 -- Index pour la table `User`
 --
 ALTER TABLE `User`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Caption`
+--
+ALTER TABLE `Caption`
+  MODIFY `caption_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `Picture`
+--
+ALTER TABLE `Picture`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Contraintes pour les tables déchargées
@@ -190,7 +211,7 @@ ALTER TABLE `User`
 -- Contraintes pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  ADD CONSTRAINT `Caption_ibfk_1` FOREIGN KEY (`title`) REFERENCES `Picture` (`title`);
+  ADD CONSTRAINT `fk_pic` FOREIGN KEY (`pic_id`) REFERENCES `Picture` (`id`);
 
 --
 -- Contraintes pour la table `Picture`
@@ -203,7 +224,7 @@ ALTER TABLE `Picture`
 -- Contraintes pour la table `Translation`
 --
 ALTER TABLE `Translation`
-  ADD CONSTRAINT `fk_caption` FOREIGN KEY (`caption`) REFERENCES `Caption` (`title`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_caption` FOREIGN KEY (`caption_id`) REFERENCES `Caption` (`caption_id`),
   ADD CONSTRAINT `fk_language` FOREIGN KEY (`language`) REFERENCES `Language` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
