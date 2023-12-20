@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Bienvenue
             <span class="<?php
-            if(isset($_SESSION["is_admin"])){
+            if (isset($_SESSION["is_admin"])) {
                 echo "text-danger";
             } ?>">
                 <?php
@@ -17,6 +17,7 @@
             <?php
                 } else {
                     ?>
+            </span>
             </a>
             <a href="login.php">
                 Se connecter
