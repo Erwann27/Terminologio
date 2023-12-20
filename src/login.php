@@ -26,8 +26,8 @@
                 Votre identifiant et/ou mot de passe ne sont pas reconnus
             </div>
             <?php
-            session_destroy();
         }
+        session_destroy();
         ?>
         <form class="border p-2" method="POST" action="Controller/login.php">
             <div class="form-group mb-3">

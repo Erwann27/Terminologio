@@ -26,8 +26,8 @@
                 Cet identifiant est déjà utilisé
             </div>
             <?php
-            session_destroy();
         }
+        session_destroy();
         ?>
         <form class="border p-2" method="POST" action="Controller/register.php">
             <div class="form-group mb-3">
@@ -38,16 +38,17 @@
             <div class="form-group mb-3">
                 <label for="password">Mot de passe : </label>
                 <input type="password" class="form-control" name="pwd" id="password" placeholder="Mot de passe"
-                    required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="confirm-password">Confirmation du mot de passe : </label>
-                <input type="password" class="form-control" name="conf-pwd" id="confirm-password"
-                    placeholder="Confirmation du mot de passe" required>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-primary" type="submit">S'inscrire</button>
-            </div>
+                    minlength="8" maxlength="30" required>
+                <div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="confirm-password">Confirmation du mot de passe : </label>
+                    <input type="password" class="form-control" name="conf-pwd" id="confirm-password"
+                        placeholder="Confirmation du mot de passe" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary" type="submit">S'inscrire</button>
+                </div>
         </form>
     </div>
 </body>
