@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,6 +19,16 @@
 <body>
     <?php include_once("navbar.php") ?>
     <div class="container w-50">
+        <?php
+        if (isset($_SESSION["register_error"])) {
+            ?>
+            <div class="alert alert-danger" role="alert">
+                Cet identifiant est déjà utilisé
+            </div>
+            <?php
+            session_destroy();
+        }
+        ?>
         <form class="border p-2" method="POST" action="Controller/register.php">
             <div class="form-group mb-3">
                 <label for="username">Nom d'utilisateur : </label>

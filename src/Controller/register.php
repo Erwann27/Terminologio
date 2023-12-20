@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("../Model/User.php");
 
 if (isset($_POST["username"]) && isset($_POST["pwd"]) && isset($_POST["conf-pwd"])) {
@@ -15,6 +15,7 @@ if (isset($_POST["username"]) && isset($_POST["pwd"]) && isset($_POST["conf-pwd"
     $user = new User($username, $password);
     $result = $user->getByUsername($username);
     if(count($result) == 1) {
+        $_SESSION["register_error"] = 1;
         header("Location:../register.php");
     }
     $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
