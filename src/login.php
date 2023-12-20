@@ -21,14 +21,11 @@
     <div class="container w-50">
         <?php
         if (isset($_SESSION["login_error"])) {
-            switch ($_SESSION["login_error"]) {
-                case "1":
-                    ?>
-                    <div class="alert alert-danger" role="alert">
-                        Votre identifiant et/ou mot de passe ne sont pas reconnus
-                    </div>
-                <?php
-            }
+            ?>
+            <div class="alert alert-danger" role="alert">
+                Votre identifiant et/ou mot de passe ne sont pas reconnus
+            </div>
+            <?php
             session_destroy();
         }
         ?>
