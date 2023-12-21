@@ -163,6 +163,7 @@ require_once("Controller/language.php");
             document.getElementById("closeCap").click();
             desc.value = "";
         }
+        
     </script>
 </body>
 

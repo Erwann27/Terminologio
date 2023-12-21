@@ -71,4 +71,11 @@ class Caption extends Model {
         $query->execute([$pic_id, $cap_id, $x, $y]);   
         return $query->fetchAll();
     }
+
+    public function getCaptions(int $pic_id): array {
+        $sql = "SELECT caption_id, point_X, point_Y FROM $this->table WHERE pic_id =  ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id]);   
+        return $query->fetchAll();
+    }
 }

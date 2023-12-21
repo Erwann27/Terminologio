@@ -20,7 +20,7 @@ function updateImg() {
         if (xhr.status == 200) {
             let result = xhr.responseText;
             document.getElementById("show-img").innerHTML = result;
+            printCaptions();
         }
     }
-
 }

@@ -17,6 +17,8 @@
             <?php
                 } else {
                     ?>
+                     </span>
+
             </a>
             <a href="login.php">
                 Se connecter

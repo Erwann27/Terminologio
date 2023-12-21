@@ -49,4 +49,31 @@ function getNumber(x, y, language, desc) {
     return result;
 }
 
+function printCaptions() {
+    let category = document.getElementById("category-selection");
+    let project = document.getElementById("project-selection");
+    let value_cat = category.options[category.selectedIndex].text;
+    let value_proj = project.options[project.selectedIndex].text;
+    let url = "Controller/getCaptions.php?title=" + value_proj + "&cat=" + value_cat;
+    xhrCap.open("GET", url, false);
+    xhrCap.send(null);
+    if (xhrCap.status == 200) {
+        let array = JSON.parse(xhrCap.responseText);
+        for (let i = 0; i < array.length; ++i) {
+            let svg = document.getElementById("svg");
+            let caption_id = array[i].caption_id;
+            let x = array[i].point_X;
+            let y = array[i].point_Y;
+            const svgns = "http://www.w3.org/2000/svg";
+            let text = document.createElementNS(svgns, "text");
+            text.setAttribute("x", x);
+            text.setAttribute("y", y);
+            text.setAttribute("fill", "red");
+            text.setAttribute("font-size", "28px");
+            text.innerHTML = caption_id;
+            svg.appendChild(text);
+        }
+    }
+}
+
 
