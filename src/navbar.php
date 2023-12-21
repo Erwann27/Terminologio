@@ -18,7 +18,7 @@
                     if (!isset($_SESSION["is_admin"])) {
                         ?>
                         <div id="create-project-container" class="me-5">
-                            <input type="button" value="Créer un nouveau projet" class="form-control" data-bs-toggle="offcanvas"
+                            <input type="button" value="Créer un nouveau projet" class="form-control btn btn-success" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 
                             <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"

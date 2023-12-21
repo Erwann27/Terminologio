@@ -96,8 +96,11 @@ require_once("Controller/language.php");
                                 Supprimer le projet?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Abandonner</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Définitivement supprimmer</button>
+                                <button type="button" class="btn btn-primary"
+                                    data-bs-dismiss="modal">Abandonner</button>
+                                <form method="post" action="Controller/delete.php">
+                                    <input type="submit" class="btn btn-danger" value="Définitivement supprimmer"></input>
+                                </form>
                             </div>
                         </div>
                     </div>
