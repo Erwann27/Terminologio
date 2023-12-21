@@ -129,7 +129,7 @@ require_once("Controller/language.php");
                     <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false"
                     tabindex="-1" aria-labelledby="offcanvasScrollingLabelCaption" id="offcanvasScrollingCaption">
                         <div class="offcanvas-header">
-                            <h1 class="offcanvas-title" id="offcanvasScrollingLabelCaption">Importation d'une image</h1>
+                            <h1 class="offcanvas-title" id="offcanvasScrollingLabelCaption">Ajout d'une terminologie</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="closeCap"></button>
                         </div>
                         <div class="offcanvas-body">
@@ -158,9 +158,10 @@ require_once("Controller/language.php");
             captionForm(); 
         }
         document.getElementById("submitCap").onclick = function(e) {
-            addCaption(event); 
+            let desc = document.getElementById("descCap");
+            addCaption(event, desc.value); 
             document.getElementById("closeCap").click();
-            document.getElementById("descCap").value = "";
+            desc.value = "";
         }
     </script>
 </body>

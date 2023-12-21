@@ -8,8 +8,9 @@ function getMousePosition(e) {
   }
 
 
-function addCaption(e) {
+function addCaption(e, desc) {
     var svg = document.getElementById("svg");
+    let language = document.getElementById("language-selection").selectedOptions[0].label;
     let pt = svg.createSVGPoint();
     pt.x = e.clientX;
     pt.y = e.clientY;
@@ -22,7 +23,7 @@ function addCaption(e) {
     text.setAttribute("y", y);
     text.setAttribute("fill", "red");
     text.setAttribute("font-size", "28px");
-    let value = getNumber(x, y);
+    let value = getNumber(x, y, language, desc);
     text.innerHTML = value;
     svg.appendChild(text);
 }
@@ -32,12 +33,13 @@ if (!xhrCap) {
     window.alert("Objet XMLHTTPRequest non pris en charge par votre navigateur");
 }
 
-function getNumber(x, y) {
+function getNumber(x, y, language, desc) {
     let category = document.getElementById("category-selection");
     let project = document.getElementById("project-selection");
     let value_cat = category.options[category.selectedIndex].text;
     let value_proj = project.options[project.selectedIndex].text;
-    let url = "Controller/number.php?title=" + value_proj + "&cat=" + value_cat + "&x=" + x +"&y=" + y;
+    let url = "Controller/number.php?title=" + value_proj + "&cat=" + value_cat + "&x=" + x 
+        +"&y=" + y + "&lang=" + language + "&text=" + desc;
     xhrCap.open("GET", url, false);
     xhrCap.send(null);
     let result = "";

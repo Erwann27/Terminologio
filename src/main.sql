@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : jeu. 21 déc. 2023 à 14:20
+-- Généré le : jeu. 21 déc. 2023 à 16:19
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -39,11 +39,31 @@ CREATE TABLE `Caption` (
 --
 
 INSERT INTO `Caption` (`pic_id`, `caption_id`, `point_X`, `point_Y`) VALUES
-(1, 1, 0, 0),
-(1, 2, 837, 65),
-(1, 3, 679, 330),
-(1, 4, 848, 69),
-(4, 0, 348, 270);
+(1, 1, 887, 36),
+(1, 2, 479, 56),
+(1, 3, 799, 81),
+(1, 4, 670, 68),
+(1, 5, 684, 133),
+(1, 6, 735, 155),
+(1, 7, 507, 130),
+(2, 1, 616, 3),
+(7, 1, 316, 180),
+(7, 2, 492, 101),
+(7, 3, 600, 106),
+(7, 4, -85, 92),
+(7, 5, 485, 123),
+(7, 6, 300, 40),
+(7, 7, 493, 109),
+(7, 8, 400, 113),
+(7, 9, 361, 77),
+(8, 1, 746, 89),
+(8, 2, 536, 178),
+(8, 3, 734, 70),
+(8, 4, 667, 139),
+(8, 5, 661, 94),
+(8, 6, 341, 295),
+(8, 7, 504, 38),
+(8, 8, 531, 84);
 
 -- --------------------------------------------------------
 
@@ -119,10 +139,29 @@ INSERT INTO `Picture` (`id`, `title`, `default_language`, `category`) VALUES
 --
 
 CREATE TABLE `Translation` (
+  `pic_id` int(11) NOT NULL,
   `caption_id` int(11) NOT NULL,
   `language` varchar(2) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Translation`
+--
+
+INSERT INTO `Translation` (`pic_id`, `caption_id`, `language`, `text`) VALUES
+(1, 5, '0', 'a'),
+(1, 7, 'it', 'aaaaaaaaaaaaaaa'),
+(2, 1, 'de', 'b'),
+(7, 3, 'de', 'zaeaea'),
+(7, 4, 'de', 'zazazaza'),
+(7, 5, 'de', 'bbbbbbb'),
+(7, 6, 'de', 't'),
+(7, 9, '0', 'po'),
+(8, 5, 'de', 'test'),
+(8, 6, 'de', 'teseaije'),
+(8, 7, 'de', 'aaaaa'),
+(8, 8, 'de', 'a');
 
 -- --------------------------------------------------------
 
@@ -161,8 +200,7 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 -- Index pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  ADD PRIMARY KEY (`pic_id`,`caption_id`),
-  ADD UNIQUE KEY `caption_id` (`caption_id`);
+  ADD PRIMARY KEY (`pic_id`,`caption_id`);
 
 --
 -- Index pour la table `Category`
@@ -189,8 +227,8 @@ ALTER TABLE `Picture`
 -- Index pour la table `Translation`
 --
 ALTER TABLE `Translation`
-  ADD KEY `fk_language` (`language`),
-  ADD KEY `fk_caption` (`caption_id`);
+  ADD PRIMARY KEY (`pic_id`,`caption_id`),
+  ADD KEY `fk_language` (`language`);
 
 --
 -- Index pour la table `User`
@@ -224,13 +262,6 @@ ALTER TABLE `Caption`
 ALTER TABLE `Picture`
   ADD CONSTRAINT `Picture_ibfk_1` FOREIGN KEY (`category`) REFERENCES `Category` (`name`),
   ADD CONSTRAINT `Picture_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `Language` (`code`);
-
---
--- Contraintes pour la table `Translation`
---
-ALTER TABLE `Translation`
-  ADD CONSTRAINT `fk_caption` FOREIGN KEY (`caption_id`) REFERENCES `Caption` (`caption_id`),
-  ADD CONSTRAINT `fk_language` FOREIGN KEY (`language`) REFERENCES `Language` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

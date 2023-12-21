@@ -4,12 +4,17 @@ require_once("../Model/Category.php");
 
 require_once("../Model/Picture.php");
 require_once("../Model/Caption.php");
+require_once("../Model/Translation.php");
+require_once("../Model/Language.php");
 
 $category = new Category($_GET["cat"]);
 $x = $_GET["x"];
 $y = $_GET["y"];
+$desc = $_GET["text"];
 
-$pic = new Picture($_GET["title"], "fr", $category);
+$language = $_GET["lang"];
+
+$pic = new Picture($_GET["title"], $language, $category);
 $pic_id = $pic -> getProjectsFromTitleAndCategory($pic -> getTitle(), $category -> getName())[0]["id"];
 
 $caption = new Caption($pic_id);
@@ -18,7 +23,10 @@ $array = $caption -> getNextCaptionIdFromPic($caption -> getPicId());
 if (count($array) > 0) {
     $new_id = $array[0]["caption_id"];
 }
+++$new_id;
+$caption -> insert($pic_id, $new_id, $x, $y);
 
-$caption -> insert($pic_id, $new_id + 1, $x, $y);
-
-echo $new_id + 1;
+$translation = new Translation($pic_id, $new_id, $language, $desc);
+$translation -> insertTranslation($translation->getPicId(), $translation -> getCaptionId(), 
+            $translation -> getLanguage(), $translation -> getText());
+echo $new_id;
