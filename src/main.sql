@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : mer. 20 déc. 2023 à 18:59
+-- Généré le : jeu. 21 déc. 2023 à 14:20
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -39,7 +39,11 @@ CREATE TABLE `Caption` (
 --
 
 INSERT INTO `Caption` (`pic_id`, `caption_id`, `point_X`, `point_Y`) VALUES
-(1, 1, 0, 0);
+(1, 1, 0, 0),
+(1, 2, 837, 65),
+(1, 3, 679, 330),
+(1, 4, 848, 69),
+(4, 0, 348, 270);
 
 -- --------------------------------------------------------
 
@@ -157,7 +161,7 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 -- Index pour la table `Caption`
 --
 ALTER TABLE `Caption`
-  ADD PRIMARY KEY (`pic_id`),
+  ADD PRIMARY KEY (`pic_id`,`caption_id`),
   ADD UNIQUE KEY `caption_id` (`caption_id`);
 
 --
@@ -197,12 +201,6 @@ ALTER TABLE `User`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `Caption`
---
-ALTER TABLE `Caption`
-  MODIFY `caption_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `Picture`

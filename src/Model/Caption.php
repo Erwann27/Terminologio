@@ -64,4 +64,11 @@ class Caption extends Model {
         $query->execute([$pic_id]);
         return $query->fetchAll();
     }
+
+    public function insert(int $pic_id, int $cap_id, float $x, float $y): array {
+        $sql = "INSERT INTO $this->table VALUES (?, ?, ?, ?)";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id, $cap_id, $x, $y]);   
+        return $query->fetchAll();
+    }
 }

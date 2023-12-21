@@ -43,13 +43,17 @@ require_once("Controller/language.php");
             var value = document.getElementById("project-selection").value;
             if (value != 0) {
                 document.getElementById("language-selection-container").classList.remove("d-none");
-
             } else {
                 document.getElementById("language-selection-container").classList.add("d-none");
 
             }
             printLanguagesFromProject();
             printProject(); 
+        }
+
+        function captionForm() {
+            document.getElementById("create-caption-container").classList.remove("d-none");
+            document.getElementById("triggerCap").click();
         }
     </script>
 </head>
@@ -87,7 +91,7 @@ require_once("Controller/language.php");
                     <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" 
                     tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Importation d'une image</h5>
+                            <h1 class="offcanvas-title" id="offcanvasScrollingLabel">Importation d'une image</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
@@ -118,6 +122,28 @@ require_once("Controller/language.php");
                     </div>
                 </div>
             </div>
+            <div class="col-md-auto">
+                <div class="d-none" id="create-caption-container">
+                    <input type="button" value="Créer un nouveau projet" class="form-control" id="triggerCap"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrollingCaption" aria-controls="offcanvasScrolling" hidden>
+                    <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false"
+                    tabindex="-1" aria-labelledby="offcanvasScrollingLabelCaption" id="offcanvasScrollingCaption">
+                        <div class="offcanvas-header">
+                            <h1 class="offcanvas-title" id="offcanvasScrollingLabelCaption">Importation d'une image</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="closeCap"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <form method="POST">
+                                <div class="form-group mb-3">
+                                    <label for="title">Description du composant : </label>
+                                    <input type="text" class="form-control" name="title" id="descCap" required>
+                                </div>
+                                <button class="btn btn-primary" type="button" id="submitCap">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <br>
@@ -125,9 +151,16 @@ require_once("Controller/language.php");
 
     <div id = "show-img" class="text-center"></div> 
     <script>
+        var event;
         let divImg = document.getElementById("show-img");
         divImg.onclick = function(e) {
-            addCaption(e);  
+            event = e;
+            captionForm(); 
+        }
+        document.getElementById("submitCap").onclick = function(e) {
+            addCaption(event); 
+            document.getElementById("closeCap").click();
+            document.getElementById("descCap").value = "";
         }
     </script>
 </body>
