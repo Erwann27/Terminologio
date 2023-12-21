@@ -23,39 +23,9 @@ require_once("Controller/language.php");
     <script src="js/script.js"></script>
     <script src="js/print.js"></script>
     <script src="js/printLanguagesFromProject.js"></script>
-    <script src="js/caption.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/caption.js" defer></script>
 
-    <script>
-        function updateProjectSelection() {
-            var value = document.getElementById("category-selection").value;
-            if (value != 0) {
-                document.getElementById("project-selection-container").classList.remove("d-none");
-                document.getElementById("create-project-container").classList.remove("d-none");
-            } else {
-                document.getElementById("project-selection-container").classList.add("d-none");
-                document.getElementById("create-project-container").classList.add("d-none");
-                document.getElementById("language-selection-container").classList.add("d-none");
-            }
-            update();
-        }
-
-        function updateLanguageSelection() {
-            var value = document.getElementById("project-selection").value;
-            if (value != 0) {
-                document.getElementById("language-selection-container").classList.remove("d-none");
-            } else {
-                document.getElementById("language-selection-container").classList.add("d-none");
-
-            }
-            printLanguagesFromProject();
-            printProject(); 
-        }
-
-        function captionForm() {
-            document.getElementById("create-caption-container").classList.remove("d-none");
-            document.getElementById("triggerCap").click();
-        }
-    </script>
 </head>
 
 <body>
@@ -150,21 +120,13 @@ require_once("Controller/language.php");
     <br>
 
     <div id = "show-img" class="text-center"></div> 
-    <script>
-        var event;
-        let divImg = document.getElementById("show-img");
-        divImg.onclick = function(e) {
-            event = e;
-            captionForm(); 
-        }
-        document.getElementById("submitCap").onclick = function(e) {
-            let desc = document.getElementById("descCap");
-            addCaption(event, desc.value); 
-            document.getElementById("closeCap").click();
-            desc.value = "";
-        }
-        
-    </script>
+    <br>
+    <br>
+    <div class = "d-none" id="terminologie">
+        <fieldset class="border p-2" id="captions">
+            <legend  class="w-auto">Terminologies</legend>
+        </fieldset>
+    </div>
 </body>
 
 </html>

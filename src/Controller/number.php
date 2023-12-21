@@ -26,7 +26,10 @@ if (count($array) > 0) {
 ++$new_id;
 $caption -> insert($pic_id, $new_id, $x, $y);
 
-$translation = new Translation($pic_id, $new_id, $language, $desc);
-$translation -> insertTranslation($translation->getPicId(), $translation -> getCaptionId(), 
-            $translation -> getLanguage(), $translation -> getText());
+$translation = new Translation($pic_id, $language, $desc);
+$text = $translation -> getText();
+if (strcmp("", $text) == 0) {
+    $text = "Composant".$new_id;
+}
+$translation -> insertTranslation($translation->getPicId(), $new_id, $language, $text);
 echo $new_id;

@@ -9,10 +9,9 @@ class Translation extends Model {
 
     private String $text;
 
-    public function __construct(int $pic_id, int $caption_id, String $language, String $text) {
-        $this->pic_id = $pic_id;
-        $this->caption_id = $caption_id;
+    public function __construct(int $pic_id, String $language, String $text) {
         $this->language = $language;
+        $this->pic_id = $pic_id;
         $this->text = $text;
         $this->table = "Translation";
         $this->getConnection();
@@ -37,5 +36,12 @@ class Translation extends Model {
         $sql = "INSERT INTO $this->table VALUES (?, ?, ?, ?)";
         $query = $this->connexion->prepare($sql);
         $query->execute([$pic_id, $caption_id, $language, $text]);
+    }
+
+    public function getTranslations(int $pic_id, String $language):array {
+        $sql = "SELECT caption_id, text FROM $this->table WHERE pic_id = ? AND language = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id, $language]);
+        return $query->fetchAll();
     }
 }

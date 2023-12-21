@@ -21,6 +21,7 @@ function updateImg() {
             let result = xhr.responseText;
             document.getElementById("show-img").innerHTML = result;
             printCaptions();
+            printCaptionText();
         }
     }
 }
