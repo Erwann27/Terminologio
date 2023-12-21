@@ -62,7 +62,7 @@
                     } else {
                         ?>
                         <div class="me-5">
-                            <button class="btn btn-danger" onclick="window.location.replace('admin.php')">Interface administrateur</button>
+                            <a class="btn btn-danger" href="admin.php">Interface administrateur</a>
                         </div>
                         <?php
                     }
