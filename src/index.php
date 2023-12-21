@@ -76,44 +76,6 @@ require_once("Controller/language.php");
                     </select>
                 </div>
             </div>
-            <div class="col-md-auto">
-                <div class="d-none" id="create-project-container">
-                    <input type="button" value="Créer un nouveau projet" class="form-control"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" 
-                    tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Importation d'une image</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <form method="POST" action="Controller/upload.php" enctype="multipart/form-data">
-                                <div class="form-group mb-3">
-                                    <label for="title">Titre de l'image : </label>
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Titre" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="select-language">Langue par défaut : </label>
-                                    <select name="select-language" id="select-language" class="form-select">
-                                    <?php echo printLanguages(); ?>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="category-selection">Catégorie : </label>
-                                    <select name="category-selection" id="select-category" class="form-select">
-                                    <?php echo printCategories(false); ?>
-                                    </select>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="pic" class="form-label">Choisissez une image:</label>
-                                    <input class="form-control" type="file" id="pic" name="pic" accept="image/png, image/jpeg">
-                                </div>
-                                <button class="btn btn-primary" type="submit">Importer</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <br>
