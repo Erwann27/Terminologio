@@ -16,6 +16,24 @@ function captionForm() {
     document.getElementById("triggerCap").click();
 }
 
+
+var xhrUpdate = createXhrObject();
+if (!xhrUpdate) {
+    window.alert("Objet XMLHTTPRequest non pris en charge par votre navigateur");
+}
+function changeText(text, nb) {
+    let category = document.getElementById("category-selection");
+    let project = document.getElementById("project-selection");
+    let language = document.getElementById("language-selection").selectedOptions[0].label;
+    let value_cat = category.options[category.selectedIndex].text;
+    let value_proj = project.options[project.selectedIndex].text;
+    let url = "Controller/updateCaptionText.php?title=" + value_proj + "&cat=" + value_cat + "&lang=" + language
+        + "&text=" + text + "&cap_id=" + nb;
+    xhrUpdate.open("GET", url, false);
+    xhrUpdate.send(null);
+}
+
+
 function getMousePosition(e) {
     var CTM = svg.getScreenCTM();
     return {
@@ -102,7 +120,7 @@ if (!xhrText) {
 function printCaptionText() {
     let category = document.getElementById("category-selection");
     let project = document.getElementById("project-selection");
-    let language = document.getElementById("language-selection").selectedOptions[0].label;;
+    let language = document.getElementById("language-selection").selectedOptions[0].label;
     let value_cat = category.options[category.selectedIndex].text;
     let value_proj = project.options[project.selectedIndex].text;
 
@@ -119,12 +137,24 @@ function printCaptionText() {
         legend.appendChild(legendText);
         field.appendChild(legend);
         for (let i = 0; i < array.length; ++i) {
+            let div = document.createElement("div");
             let text = document.createElement("p");
             let nb = array[i].caption_id;
-            let trad = array[i].text;
-            let node = document.createTextNode(nb + ": " + trad);
+            let node = document.createTextNode(nb + " : ");
             text.appendChild(node);
-            field.appendChild(text);
+            div.appendChild(text);
+
+
+            text = document.createElement("p");       
+            text.setAttribute("contenteditable", "true");
+            let trad = array[i].text;
+            node = document.createTextNode(" " + trad);
+            text.onblur = function() {
+                changeText(text.innerHTML, nb);
+            };
+            text.appendChild(node);
+            div.appendChild(text);
+            field.append(div);
         }
     }
 }

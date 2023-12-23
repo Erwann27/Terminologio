@@ -44,4 +44,17 @@ class Translation extends Model {
         $query->execute([$pic_id, $language]);
         return $query->fetchAll();
     }
+
+    public function getAllLanguagesFromPicture(int $pic_id, String $language) :array {
+        $sql = "SELECT DISTINCT language FROM $this->table WHERE pic_id = ? AND language <> ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id, $language]);
+        return $query->fetchAll();
+    }
+
+    public function updateTranslation($pic_id, $cap_id, $language, $text) : void {
+        $sql = "UPDATE $this->table SET text = ? WHERE pic_id = ? AND caption_id = ? AND language = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$text, $pic_id, $cap_id, $language]);
+    }
 }

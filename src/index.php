@@ -21,8 +21,8 @@ require_once("Controller/language.php");
         crossorigin="anonymous"></script>
     <script src="js/ajax.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/print.js"></script>
     <script src="js/printLanguagesFromProject.js"></script>
+    <script src="js/print.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/caption.js" defer></script>
 
@@ -122,7 +122,7 @@ require_once("Controller/language.php");
     <div id = "show-img" class="text-center"></div> 
     <br>
     <br>
-    <div class = "d-none" id="terminologie">
+    <div class = "d-none wrap" id="terminologie">
         <fieldset class="border p-2" id="captions">
             <legend  class="w-auto">Terminologies</legend>
         </fieldset>

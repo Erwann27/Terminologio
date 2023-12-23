@@ -27,6 +27,11 @@ if (count($array) > 0) {
 $caption -> insert($pic_id, $new_id, $x, $y);
 
 $translation = new Translation($pic_id, $language, $desc);
+$languages = $translation -> getAllLanguagesFromPicture($pic_id, $language); 
+for ($i = 0; $i < count($languages); $i++) {
+    $text = "Composant".$new_id;
+    $translation -> insertTranslation($translation->getPicId(), $new_id, $languages[$i]["language"], $text);
+}
 $text = $translation -> getText();
 if (strcmp("", $text) == 0) {
     $text = "Composant".$new_id;

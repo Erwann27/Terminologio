@@ -23,4 +23,6 @@ function updateLanguageSelection() {
     }
     printLanguagesFromProject();
     printProject(); 
+    printCaptions();
+    printCaptionText();
 }
