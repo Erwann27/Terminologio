@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : jeu. 21 déc. 2023 à 16:19
+-- Généré le : dim. 24 déc. 2023 à 11:08
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -39,31 +39,19 @@ CREATE TABLE `Caption` (
 --
 
 INSERT INTO `Caption` (`pic_id`, `caption_id`, `point_X`, `point_Y`) VALUES
-(1, 1, 887, 36),
-(1, 2, 479, 56),
-(1, 3, 799, 81),
-(1, 4, 670, 68),
-(1, 5, 684, 133),
-(1, 6, 735, 155),
-(1, 7, 507, 130),
-(2, 1, 616, 3),
-(7, 1, 316, 180),
-(7, 2, 492, 101),
-(7, 3, 600, 106),
-(7, 4, -85, 92),
-(7, 5, 485, 123),
-(7, 6, 300, 40),
-(7, 7, 493, 109),
-(7, 8, 400, 113),
-(7, 9, 361, 77),
-(8, 1, 746, 89),
-(8, 2, 536, 178),
-(8, 3, 734, 70),
-(8, 4, 667, 139),
-(8, 5, 661, 94),
-(8, 6, 341, 295),
-(8, 7, 504, 38),
-(8, 8, 531, 84);
+(9, 1, 370, 94),
+(9, 2, 110, 68),
+(9, 3, 240, 112),
+(10, 1, 309, 328),
+(10, 2, 605, 304),
+(10, 3, 348, 584),
+(11, 1, 514, 66),
+(12, 1, 578, 231),
+(12, 2, 712, 54),
+(12, 3, 86, 616),
+(13, 1, 397, 487),
+(14, 1, 429, 136),
+(14, 2, 619, 67);
 
 -- --------------------------------------------------------
 
@@ -123,14 +111,12 @@ CREATE TABLE `Picture` (
 --
 
 INSERT INTO `Picture` (`id`, `title`, `default_language`, `category`) VALUES
-(1, 'b', 'it', 'Littérature'),
-(2, 'g', 'es', 'Sciences'),
-(3, 'h', 'de', 'Sciences'),
-(4, 'Je teste un truc', 'en', 'Sciences'),
-(8, 'raaz', 'de', 'Littérature'),
-(5, 'test', 'fr', 'Sciences'),
-(6, 'test2', 'fr', 'Sciences'),
-(7, 'test3', 'fr', 'Littérature');
+(14, 'g', 'de', 'Littérature'),
+(12, 'geagyeygegyaeagyea', 'de', 'Littérature'),
+(11, 'gueaygeayg', 'de', 'Littérature'),
+(13, 'h', 'de', 'Littérature'),
+(10, 'Paella', 'es', 'Littérature'),
+(9, 'Test', 'fr', 'Sciences');
 
 -- --------------------------------------------------------
 
@@ -150,18 +136,71 @@ CREATE TABLE `Translation` (
 --
 
 INSERT INTO `Translation` (`pic_id`, `caption_id`, `language`, `text`) VALUES
-(1, 5, '0', 'a'),
-(1, 7, 'it', 'aaaaaaaaaaaaaaa'),
-(2, 1, 'de', 'b'),
-(7, 3, 'de', 'zaeaea'),
-(7, 4, 'de', 'zazazaza'),
-(7, 5, 'de', 'bbbbbbb'),
-(7, 6, 'de', 't'),
-(7, 9, '0', 'po'),
-(8, 5, 'de', 'test'),
-(8, 6, 'de', 'teseaije'),
-(8, 7, 'de', 'aaaaa'),
-(8, 8, 'de', 'a');
+(9, 1, 'de', ' cieeeeeel'),
+(9, 1, 'en', 'Sky'),
+(9, 1, 'es', 'Composant1'),
+(9, 1, 'fr', '  Ciel'),
+(9, 1, 'it', 'Composant1'),
+(9, 2, 'de', 'Composant2'),
+(9, 2, 'en', 'Composant2'),
+(9, 2, 'es', 'Composant2'),
+(9, 2, 'fr', 'Tour'),
+(9, 2, 'it', 'Composant2'),
+(9, 3, 'de', 'Composant3'),
+(9, 3, 'en', ' 3'),
+(9, 3, 'es', 'Composant3'),
+(9, 3, 'fr', 'eagueyggyea'),
+(9, 3, 'it', 'Composant3'),
+(10, 1, 'de', 'Composant1'),
+(10, 1, 'en', 'Composant1'),
+(10, 1, 'es', ' serveur'),
+(10, 1, 'fr', 'Composant1'),
+(10, 1, 'it', 'Composant1'),
+(10, 2, 'de', 'Composant2'),
+(10, 2, 'en', 'Composant2'),
+(10, 2, 'es', 'a'),
+(10, 2, 'fr', 'Composant2'),
+(10, 2, 'it', 'Composant2'),
+(10, 3, 'de', 'Composant3'),
+(10, 3, 'en', 'Composant3'),
+(10, 3, 'es', 'eiahehi'),
+(10, 3, 'fr', 'Composant3'),
+(10, 3, 'it', 'Composant3'),
+(11, 1, 'de', 'zguaygz'),
+(11, 1, 'en', 'Composant1'),
+(11, 1, 'es', 'Composant1'),
+(11, 1, 'fr', 'Composant1'),
+(11, 1, 'it', 'Composant1'),
+(12, 1, 'de', ' TEST'),
+(12, 1, 'en', 'Composant1'),
+(12, 1, 'es', 'Composant1'),
+(12, 1, 'fr', 'Composant1'),
+(12, 1, 'it', 'Composant1'),
+(12, 2, 'de', 'aaa'),
+(12, 2, 'en', 'Composant2'),
+(12, 2, 'es', 'Composant2'),
+(12, 2, 'fr', 'Composant2'),
+(12, 2, 'it', 'Composant2'),
+(12, 3, 'de', '3'),
+(12, 3, 'en', 'Composant3'),
+(12, 3, 'es', 'Composant3'),
+(12, 3, 'fr', 'Composant3'),
+(12, 3, 'it', 'Composant3'),
+(13, 1, 'de', 'h'),
+(13, 1, 'en', 'Composant1'),
+(13, 1, 'es', 'Composant1'),
+(13, 1, 'fr', 'Composant1'),
+(13, 1, 'it', 'Composant1'),
+(14, 1, 'de', 'l'),
+(14, 1, 'en', 'Composant1'),
+(14, 1, 'es', 'Composant1'),
+(14, 1, 'fr', 'Composant1'),
+(14, 1, 'it', 'Composant1'),
+(14, 2, 'de', 'a'),
+(14, 2, 'en', 'Composant2'),
+(14, 2, 'es', 'Composant2'),
+(14, 2, 'fr', 'Composant2'),
+(14, 2, 'it', 'Composant2');
 
 -- --------------------------------------------------------
 
@@ -190,7 +229,7 @@ INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
 ('p', '$2y$10$4iETKMWEOVLxVgNScarijObOn.MwFc5U306DtqpaR5TK1fXlxmd2u', 0),
 ('t', 'e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8', 0),
 ('test', '$2y$10$6IGk1zvqZGkuQ3Eu8UGOpOQMVoZVb5vf/FoOd3IhyUzj7Xa2GIWky', 1),
-('zounkla', '$2y$10$DpYzt.X1UNcPbp3ILD6m1OZlCLvigKV.7mIGOODMTp7hpl9brGQfi', 0);
+('zounkla', '$2y$10$Md2.kUl1YZ7RpCbpxDLY6eX1bEU4cByzcSFhm4/y2k4kJr3MU7lvO', 0);
 
 --
 -- Index pour les tables déchargées
@@ -220,14 +259,13 @@ ALTER TABLE `Language`
 ALTER TABLE `Picture`
   ADD PRIMARY KEY (`title`,`category`) USING BTREE,
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `category` (`category`),
-  ADD KEY `Picture_ibfk_2` (`default_language`);
+  ADD KEY `category` (`category`);
 
 --
 -- Index pour la table `Translation`
 --
 ALTER TABLE `Translation`
-  ADD PRIMARY KEY (`pic_id`,`caption_id`),
+  ADD PRIMARY KEY (`pic_id`,`caption_id`,`language`),
   ADD KEY `fk_language` (`language`);
 
 --
@@ -244,23 +282,16 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour la table `Picture`
 --
 ALTER TABLE `Picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `Caption`
---
-ALTER TABLE `Caption`
-  ADD CONSTRAINT `fk_pic` FOREIGN KEY (`pic_id`) REFERENCES `Picture` (`id`);
-
---
 -- Contraintes pour la table `Picture`
 --
 ALTER TABLE `Picture`
-  ADD CONSTRAINT `Picture_ibfk_1` FOREIGN KEY (`category`) REFERENCES `Category` (`name`),
   ADD CONSTRAINT `Picture_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `Language` (`code`);
 COMMIT;
 
