@@ -45,10 +45,10 @@ class Translation extends Model {
         return $query->fetchAll();
     }
 
-    public function getAllLanguagesFromPicture(int $pic_id, String $language) :array {
-        $sql = "SELECT DISTINCT language FROM $this->table WHERE pic_id = ? AND language <> ?";
+    public function getAllLanguagesFromPicture(String $language) :array {
+        $sql = "SELECT DISTINCT code FROM Language WHERE code <> ?";
         $query = $this->connexion->prepare($sql);
-        $query->execute([$pic_id, $language]);
+        $query->execute([$language]);
         return $query->fetchAll();
     }
 

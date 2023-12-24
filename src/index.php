@@ -50,7 +50,7 @@ require_once("Controller/language.php");
             <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="language-selection-container">
                     <label for="language-selection" class="input-group-text">Sélection de langue</label>
-                    <select class="form-select" id="language-selection">
+                    <select class="form-select" id="language-selection" onchange="printCaptionText();">
                     </select>
                 </div>
             </div>

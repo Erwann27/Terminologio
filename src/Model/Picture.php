@@ -60,7 +60,7 @@ class Picture extends Model {
         return $query->fetchAll();
     }
 
-    public function getLanguagesFromTitleAndCategory (String $title, String $category): array {
+    public function getLanguageFromTitleAndCategory (String $title, String $category): array {
         $sql = "SELECT default_language FROM $this->table WHERE title = ? AND category = ?";
         $query = $this->connexion->prepare($sql);
         $query->execute([$title, $category]);

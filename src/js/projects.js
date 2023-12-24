@@ -21,8 +21,8 @@ function updateLanguageSelection() {
         document.getElementById("language-selection-container").classList.add("d-none");
         document.getElementById("terminologie").classList.add("d-none");
     }
-    printLanguagesFromProject();
     printProject(); 
+    printLanguagesFromProject();
     printCaptions();
     printCaptionText();
 }

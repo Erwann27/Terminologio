@@ -120,7 +120,8 @@ if (!xhrText) {
 function printCaptionText() {
     let category = document.getElementById("category-selection");
     let project = document.getElementById("project-selection");
-    let language = document.getElementById("language-selection").selectedOptions[0].label;
+    let language = document.getElementById("language-selection");
+    language = language.options[language.selectedIndex].text;
     let value_cat = category.options[category.selectedIndex].text;
     let value_proj = project.options[project.selectedIndex].text;
 

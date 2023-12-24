@@ -11,7 +11,7 @@ function printLanguagesFromProject() {
     let value_proj = project.options[project.selectedIndex].text;
 
     let url = "Controller/printLanguagesFromProject.php?title=" + value_proj + "&cat=" + value_cat;
-    xhrLanguages.open("GET", url, true);
+    xhrLanguages.open("GET", url, false);
     xhrLanguages.send(null);
 }
 
