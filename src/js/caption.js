@@ -106,6 +106,8 @@ function printCaptions() {
             text.setAttribute("y", y);
             text.setAttribute("fill", "red");
             text.setAttribute("font-size", "28px");
+            let id = "Caption" + caption_id;
+            text.setAttribute("id", id);
             text.innerHTML = caption_id;
             svg.appendChild(text);
         }
@@ -150,9 +152,17 @@ function printCaptionText() {
             text.setAttribute("contenteditable", "true");
             let trad = array[i].text;
             node = document.createTextNode(" " + trad);
+            let id = "Caption" + nb;
+            let caption = document.getElementById(id);
             text.onblur = function() {
                 changeText(text.innerHTML, nb);
+                caption.setAttribute("font-weight", "");
             };
+           
+            text.onfocus = function() {
+                caption.setAttribute("font-weight", "900");
+                
+            }
             text.appendChild(node);
             div.appendChild(text);
             field.append(div);
