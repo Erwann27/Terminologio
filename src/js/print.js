@@ -11,7 +11,7 @@ function printProject() {
     let value_proj = project.options[project.selectedIndex].text;
 
     let url = "Controller/print.php?title=" + value_proj + "&cat=" + value_cat;
-    xhr.open("GET", url, true);
+    xhr.open("GET", url, false);
     xhr.send(null);
 }
 
@@ -22,5 +22,4 @@ function updateImg() {
             document.getElementById("show-img").innerHTML = result;
         }
     }
-
 }

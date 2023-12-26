@@ -74,12 +74,13 @@
                 <?php
                 } else {
                     ?>
-                </span>
-                </a>
-                <a href="login.php">
-                    Se connecter
-                </a>
-                <?php
+                     </span>
+
+            </a>
+            <a href="login.php">
+                Se connecter
+            </a>
+            <?php
                 }
                 ?>
             </div>
