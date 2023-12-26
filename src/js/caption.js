@@ -59,6 +59,8 @@ function addCaption(e, desc) {
     text.setAttribute("fill", "red");
     text.setAttribute("font-size", "28px");
     let value = getNumber(x, y, language, desc);
+    let id = "Caption" + value;
+    text.setAttribute("id", id);
     text.innerHTML = value;
     svg.appendChild(text);
     printCaptionText();
