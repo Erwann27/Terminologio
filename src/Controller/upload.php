@@ -14,6 +14,9 @@ if (isset($_POST["title"]) && isset($_POST["select-language"]) && isset($_POST["
     $category = new Category($select_category);
     $pic = new Picture ($title, $code, $category);
     $pic->insertPic($pic -> getTitle(), $pic -> getDefaultLanguage(), $pic -> getCategory() -> getName());
+    if (!is_dir("../res/" . $category -> getName())) {
+        mkdir("../res/". $category -> getName(), 0777);
+    }
     $path = "../res/". $category -> getName() . '/' . $title;
     move_uploaded_file($image, $path);
     header("Location:../index.php");
