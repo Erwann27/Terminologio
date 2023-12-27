@@ -6,7 +6,7 @@ divImg.onclick = function(e) {
 }
 document.getElementById("submitCap").onclick = function(e) {
     let desc = document.getElementById("descCap");
-    addCaption(ev, desc.value); 
+    addCaption(ev, desc.value, editable); 
     document.getElementById("closeCap").click();
     desc.value = "";
 }
@@ -43,7 +43,7 @@ function getMousePosition(e) {
   }
 
 
-function addCaption(e, desc) {
+function addCaption(e, desc, editable) {
     var svg = document.getElementById("svg");
     let language = document.getElementById("language-selection").selectedOptions[0].label;
     let pt = svg.createSVGPoint();
@@ -63,7 +63,7 @@ function addCaption(e, desc) {
     text.setAttribute("id", id);
     text.innerHTML = value;
     svg.appendChild(text);
-    printCaptionText();
+    printCaptionText(editable);
 }
 
 var xhrCap = createXhrObject();
@@ -121,7 +121,7 @@ if (!xhrText) {
     window.alert("Objet XMLHTTPRequest non pris en charge par votre navigateur");
 }
 
-function printCaptionText() {
+function printCaptionText(editable) {
     let category = document.getElementById("category-selection");
     let project = document.getElementById("project-selection");
     let language = document.getElementById("language-selection");
@@ -151,19 +151,20 @@ function printCaptionText() {
 
 
             text = document.createElement("p");       
-            text.setAttribute("contenteditable", "true");
             let trad = array[i].text;
             node = document.createTextNode(" " + trad);
             let id = "Caption" + nb;
             let caption = document.getElementById(id);
-            text.onblur = function() {
-                changeText(text.innerHTML, nb);
-                caption.setAttribute("font-weight", "");
-            };
-           
-            text.onfocus = function() {
-                caption.setAttribute("font-weight", "900");
-                
+            if (editable == '1') {
+                text.setAttribute("contenteditable", "true");
+                text.onblur = function() {
+                    changeText(text.innerHTML, nb);
+                    caption.setAttribute("font-weight", "");
+                };
+            
+                text.onfocus = function() {
+                    caption.setAttribute("font-weight", "900");
+                }
             }
             text.appendChild(node);
             div.appendChild(text);

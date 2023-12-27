@@ -43,21 +43,30 @@ require_once("Controller/language.php");
             <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="project-selection-container">
                     <label for="project-selection" class="input-group-text">Sélection du projet</label>
-                    <select class="form-select" id="project-selection" onchange="updateLanguageSelection();">
+                    <select class="form-select" id="project-selection">
+                    <script>
+                        var editable = '<?php echo isset($_SESSION["username"]) - isset($_SESSION["is_admin"]);?>';
+                        document.getElementById("project-selection").onchange = function() {
+                            updateLanguageSelection(editable);
+                        }
+                    </script>
                     </select>
                 </div>
             </div>
             <div class="col-md-auto">
                 <div class="input-group col-auto d-none" id="language-selection-container">
                     <label for="language-selection" class="input-group-text">Sélection de langue</label>
-                    <select class="form-select" id="language-selection" onchange="printCaptionText();">
+                    <select class="form-select" id="language-selection">
                     </select>
+                    <script>
+                        document.getElementById("language-selection").onchange = function () {
+                            printCaptionText(editable);
+                        }
+                    </script>
                 </div>
             </div>
             <div class="col-md-auto">
                 <div class="d-none" id="create-project-container">
-                    <input type="button" value="Créer un nouveau projet" class="form-control"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" 
                     tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                         <div class="offcanvas-header">
@@ -94,8 +103,10 @@ require_once("Controller/language.php");
             </div>
             <div class="col-md-auto">
                 <div class="d-none" id="create-caption-container">
-                    <input type="button" value="Créer un nouveau projet" class="form-control" id="triggerCap"
+                    <?php if(isset($_SESSION["username"]) && !isset($_SESSION["is_admin"])) { ?>
+                    <input type="button" value="Ajouter une terminologie" class="form-control" id="triggerCap"
                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrollingCaption" aria-controls="offcanvasScrolling" hidden>
+                    <?php } ?>
                     <div class="offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false"
                     tabindex="-1" aria-labelledby="offcanvasScrollingLabelCaption" id="offcanvasScrollingCaption">
                         <div class="offcanvas-header">

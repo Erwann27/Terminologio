@@ -11,7 +11,7 @@ function updateProjectSelection() {
     update();
 }
 
-function updateLanguageSelection() {
+function updateLanguageSelection(editable) {
     var value = document.getElementById("project-selection").value;
     if (value != 0) {
         document.getElementById("language-selection-container").classList.remove("d-none");
@@ -24,5 +24,5 @@ function updateLanguageSelection() {
     printProject(); 
     printLanguagesFromProject();
     printCaptions();
-    printCaptionText();
+    printCaptionText(editable);
 }
