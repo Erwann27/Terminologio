@@ -24,6 +24,7 @@ require_once("Controller/language.php");
     <script src="js/ajax.js"></script>
     <script src="js/script.js"></script>
     <script src="js/print.js"></script>
+    <script src="js/delete.js"></script>
     <script src="js/printLanguagesFromProject.js"></script>
     <script>
         function updateProjectSelection() {
@@ -98,9 +99,7 @@ require_once("Controller/language.php");
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary"
                                     data-bs-dismiss="modal">Abandonner</button>
-                                <form method="post" action="Controller/delete.php">
-                                    <input type="submit" class="btn btn-danger" value="Définitivement supprimmer"></input>
-                                </form>
+                                <input type="submit" class="btn btn-danger" value="Définitivement supprimmer" onclick="removeProject();"></input>
                             </div>
                         </div>
                     </div>

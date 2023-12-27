@@ -66,4 +66,10 @@ class Picture extends Model {
         $query->execute([$title, $category]);
         return $query->fetchAll();
     }
+
+    public function removePicture (String $title, String $category) {
+        $sql = "DELETE FROM $this->table WHERE title = ? AND category = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$title, $category]);
+    }
 }
