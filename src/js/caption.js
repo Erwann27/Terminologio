@@ -143,6 +143,7 @@ function printCaptionText(editable) {
         field.appendChild(legend);
         for (let i = 0; i < array.length; ++i) {
             let div = document.createElement("div");
+            div.setAttribute("id", "captionDiv" + array[i].caption_id);
             let text = document.createElement("p");
             let nb = array[i].caption_id;
             let node = document.createTextNode(nb + " : ");
