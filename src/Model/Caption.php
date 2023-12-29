@@ -75,7 +75,13 @@ class Caption extends Model {
     public function getCaptions(int $pic_id): array {
         $sql = "SELECT caption_id, point_X, point_Y FROM $this->table WHERE pic_id =  ?";
         $query = $this->connexion->prepare($sql);
-        $query->execute([$pic_id]);   
+        $query->execute([$pic_id]);
         return $query->fetchAll();
+    }
+
+    public function removeCaption(int $pic_id, int $cap_id){
+        $sql = "DELETE FROM $this->table WHERE pic_id =  ? AND caption_id = ?";
+        $query = $this->connexion->prepare($sql);
+        $query->execute([$pic_id, $cap_id]);
     }
 }
