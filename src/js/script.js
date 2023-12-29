@@ -8,7 +8,7 @@ function update() {
     var category = document.getElementById("category-selection");
     var value = category.options[category.selectedIndex].text;
     var url = "Controller/projects.php?category=" + value;
-    xhr.open("GET", url, true);
+    xhr.open("GET", url, false);
     xhr.send(null);
 }
 
@@ -17,6 +17,8 @@ function updateData() {
         if (xhr.status == 200) {
             var result = xhr.responseText;
             document.getElementById("project-selection").innerHTML = result;
+        } else {
+            console.log("error");
         }
     }
 
