@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : ven. 29 déc. 2023 à 10:29
+-- Généré le : ven. 29 déc. 2023 à 10:32
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -117,7 +117,7 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
-('admin', '$2y$10$LFsqLQVQNNjv.5einZiCIuEGaEwUDxBK6xHkckos145ei823Glz22', 1);
+('admin ', '$2y$10$7bgsMiAQ4xxoMarZTefUWOGd0t/Kvj6DUsy6VCc37pVGRpcSUu6Ie', 1);
 
 --
 -- Index pour les tables déchargées
