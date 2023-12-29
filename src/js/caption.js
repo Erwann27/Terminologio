@@ -34,14 +34,6 @@ function changeText(text, nb) {
 }
 
 
-function getMousePosition(e) {
-    var CTM = svg.getScreenCTM();
-    return {
-      x: (e.clientX - CTM.e) / CTM.a,
-      y: (e.clientY - CTM.f) / CTM.d
-    };
-  }
-
 
 function addCaption(e, desc, editable) {
     var svg = document.getElementById("svg");
@@ -150,23 +142,28 @@ function printCaptionText(editable) {
             div.appendChild(text);
 
 
-            text = document.createElement("p");       
+            
             let trad = array[i].text;
             node = document.createTextNode(" " + trad);
             let id = "Caption" + nb;
             let caption = document.getElementById(id);
             if (editable == '1') {
+                text = document.createElement("input");  
+                text.setAttribute("type", "text");    
                 text.setAttribute("contenteditable", "true");
                 text.onblur = function() {
-                    changeText(text.innerHTML, nb);
+                    changeText(text.value, nb);
                     caption.setAttribute("font-weight", "");
                 };
             
                 text.onfocus = function() {
                     caption.setAttribute("font-weight", "900");
                 }
+                text.setAttribute("value", trad);
+            } else {
+                text = document.createElement("p");
+                text.appendChild(node);
             }
-            text.appendChild(node);
             div.appendChild(text);
             field.append(div);
         }
