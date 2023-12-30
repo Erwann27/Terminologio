@@ -1,5 +1,5 @@
 <?php
 
 require_once("../Model/User.php");
-
-User::removeUser($_GET["user"]);
+$user = new User("", "");
+$user->removeUser($_GET["user"]);

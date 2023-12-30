@@ -2,6 +2,7 @@
 require_once("Model/User.php");
 
 function getUsersList() {
-    $list = User::getAllUsers();    
+    $user = new User("", "");
+    $list = $user -> getAllUsers();    
     return $list;
 }

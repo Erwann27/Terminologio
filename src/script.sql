@@ -117,7 +117,7 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`username`, `password`, `is_admin`) VALUES
-('admin ', '$2y$10$7bgsMiAQ4xxoMarZTefUWOGd0t/Kvj6DUsy6VCc37pVGRpcSUu6Ie', 1);
+('admin', '$2y$10$7bgsMiAQ4xxoMarZTefUWOGd0t/Kvj6DUsy6VCc37pVGRpcSUu6Ie', 1);
 
 --
 -- Index pour les tables déchargées

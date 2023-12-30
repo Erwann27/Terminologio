@@ -41,18 +41,16 @@ class User extends Model {
         $query->execute([$username, $password]);
     }
 
-    public static function getAllUsers():Array {
+    public function getAllUsers():Array {
         $sql = "SELECT username FROM User";
-        $connexion = new PDO("mysql:host=database;dbname=main", "root", "password");
-        $query = $connexion->prepare($sql);
+        $query = $this->connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll();
     }
 
-    public static function removeUser(String $username):void{
+    public function removeUser(String $username):void{
         $sql = "DELETE FROM User WHERE `username` = ?";
-        $connexion = new PDO("mysql:host=database;dbname=main", "root", "password");
-        $query = $connexion->prepare($sql);
+        $query = $this->connexion->prepare($sql);
         $query->execute([$username]);
     }
 }

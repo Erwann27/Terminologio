@@ -63,7 +63,7 @@ function removeCaption(id){
     let value_cat = category.options[category.selectedIndex].text;
     let value_proj = project.options[project.selectedIndex].text;
     let svg = document.getElementById("svg");
-    let url = "../Controller/removeCaption.php?cat=" + value_cat + "&title=" + value_proj + "&cap_id=" + id;
+    let url = "Controller/removeCaption.php?cat=" + value_cat + "&title=" + value_proj + "&cap_id=" + id;
     xhr.open("GET", url, false);
     xhr.send(null);
     if (xhr.readyState == 4) {

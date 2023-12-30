@@ -113,7 +113,7 @@ require_once("Controller/showUsers.php");
                                 <button class="btn btn-danger" onclick="deleteUser('<?php echo $user[0];?>');">Supprimmer l'utilisateur</button>
                                 <?php echo " : " . $user[0]; ?>
                             </li>
-                        <?
+                        <?php
                         }
                         ?>
                     </ul>
