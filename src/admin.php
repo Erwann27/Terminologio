@@ -121,6 +121,11 @@ require_once("Controller/showUsers.php");
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById("language-selection").onchange = function () {
+            printCaptionText(false);
+        }
+    </script>
 </body>
 
 </html>
