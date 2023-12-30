@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : ven. 29 déc. 2023 à 10:32
+-- Généré le : sam. 30 déc. 2023 à 09:13
 -- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- Version de PHP : 8.2.8
 
@@ -156,8 +156,7 @@ ALTER TABLE `Picture`
 --
 ALTER TABLE `Translation`
   ADD PRIMARY KEY (`pic_id`,`caption_id`,`language`),
-  ADD KEY `fk_cap` (`caption_id`),
-  ADD KEY `fk_lang` (`language`);
+  ADD KEY `language` (`language`);
 
 --
 -- Index pour la table `User`
@@ -191,6 +190,14 @@ ALTER TABLE `Caption`
 ALTER TABLE `Picture`
   ADD CONSTRAINT `Picture_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `Language` (`code`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES `Category` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Translation`
+--
+ALTER TABLE `Translation`
+  ADD CONSTRAINT `Translation_ibfk_1` FOREIGN KEY (`pic_id`) REFERENCES `Picture` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Translation_ibfk_2` FOREIGN KEY (`pic_id`,`caption_id`) REFERENCES `Caption` (`pic_id`, `caption_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Translation_ibfk_3` FOREIGN KEY (`language`) REFERENCES `Language` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
